@@ -1,0 +1,41 @@
+$primary-100: #B71C1C;
+$primary-80: #E13D3D;
+$primary-110: #8E1616;
+$primary-120: #741212;
+
+$secondary-100: #00796B;
+$secondary-80: #06A390;
+$secondary-110: #006055;
+$secondary-120: #00463E;
+
+$accent-100: #FFBF00;
+$accent-80: #FFCD37;
+$accent-110: #EDB200;
+$accent-120: #D19D00;
+
+$light-100: #F5F5F5;
+$light-80: #FAFAFA;
+$light-120: #E4E3E3;
+
+$dark-100: #000000;
+$dark-80: #484848;
+$dark-60: #827F7F;
+
+.inter {
+    font-family: 'Inter', sans-serif;
+    &-xl {
+        font-size: 48px;
+    }
+    &-l {
+        font-size: 32px;
+    }
+    &-m {
+        font-size: 24px;
+    }
+    &-s {
+        font-size: 18px;
+    }
+    &-xs {
+        font-size: 14px;
+    }
+}

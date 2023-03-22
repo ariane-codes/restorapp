@@ -1,11 +1,11 @@
 <script>
-  import { page } from "$app/stores";
-
-
+    import "$theme/restorapp-theme.scss";
+    import { page } from "$app/stores";
     import { auth } from "$lib/firebase/firebase.client";
     import { onMount } from "svelte";
     import { authStore } from "$stores/authStore";
   import { invalidateAll } from "$app/navigation";
+  import Header from "../components/Header.svelte";
     onMount(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             invalidateAll();
@@ -20,11 +20,11 @@
 
 
 <main class="mainContainer">
-    
+    <Header/>
     <slot/>
 </main>
 
-<style>
+<style lang="scss">
     .mainContainer {
         min-height: 100vh;
         display: flex;
