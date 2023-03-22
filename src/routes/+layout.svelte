@@ -1,5 +1,5 @@
 <script>
-    import "$theme/restorapp-theme.scss";
+    import "$theme/_restorapp-theme.scss";
     import { page } from "$app/stores";
     import { auth } from "$lib/firebase/firebase.client";
     import { onMount } from "svelte";
