@@ -1,9 +1,9 @@
 <script>
-  import Auth from "../components/Auth.svelte";
+    import Auth from "../components/Auth.svelte";
 
-  import { page } from "$app/stores";
+    import { page } from "$app/stores";
 </script>
 
-
-
-<Auth/>
+<div>
+    HOME
+</div>

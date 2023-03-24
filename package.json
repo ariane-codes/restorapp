@@ -17,6 +17,7 @@
 		"@smui/button": "^7.0.0-beta.0",
 		"@smui/common": "^7.0.0-beta.0",
 		"@smui/layout-grid": "^7.0.0-beta.0",
+		"@smui/textfield": "^7.0.0-beta.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"smui-theme": "^7.0.0-beta.0",
@@ -29,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"firebase": "^9.17.2",
-		"lucide-svelte": "^0.127.0"
+		"lucide-svelte": "^0.127.0",
+		"prettier-plugin-svelte": "^2.10.0"
 	}
 }

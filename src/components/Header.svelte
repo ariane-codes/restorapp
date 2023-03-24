@@ -1,11 +1,17 @@
 <script lang="ts">
     import Brand from "./brand/Brand.svelte";
-  import Button from "./Button.svelte";
+    import Button from "./button/Button.svelte";
+
+    export let shouldShowButton: boolean;
+
 </script>
 
 <header class="header-wrapper">
     <Brand height={50} variant="BrandWithCircle"/>
-    <Button on:click={(e => console.log("HEYA"))}/>
+    {#if shouldShowButton}
+        <Button on:click={(e => console.log("HEYA"))} label={"Login"}/>
+    {/if}
+    
 </header>
 
 <style lang="scss">
