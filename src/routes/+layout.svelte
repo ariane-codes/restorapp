@@ -1,5 +1,6 @@
 <script lang="ts">
     import "$theme/_restorapp-theme.scss";
+    import "../app.css";
     import type { PageData } from './$types';
 
     export let data: PageData;

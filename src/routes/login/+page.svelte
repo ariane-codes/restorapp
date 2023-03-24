@@ -15,25 +15,13 @@
 
 </script>
 
-<div class="login-container">
+<form class="login-container flex">
     <h1>Login</h1>
-    <form>
-        <Textfield 
+    <Textfield 
             label="Email"
             withLeadingIcon
             iconName="Mail"
             color="secondary-ra"
             bind:value={email}
         />
-
-    </form>
-</div> 
-
-<style>
-    .login-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-    }
-</style>
+</form> 
