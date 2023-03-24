@@ -4,6 +4,7 @@
     import Logo from "$lib/assets/brand/Logo.svg";
     export let height: number | undefined = undefined;
     export let variant: "Brand" | "BrandWithCircle" | "Logo" = "Brand";
+    export let redirectsToHome: boolean = false;
 
     let src: string;
     switch(variant) {
@@ -20,8 +21,27 @@
 
 </script>
 
-<img
-    height={height}
-    src={src}
-    alt="RestorApp"
-/>
+<style>
+    .block-ra {
+        display: block;
+    }
+</style>
+
+{#if redirectsToHome}
+    <a href="/">
+        <img
+        class="block-ra"
+        height={height}
+        src={src}
+        alt="RestorApp"
+        />
+    </a>
+{:else}
+    <img
+        class="block-ra"
+        height={height}
+        src={src}
+        alt="RestorApp"
+    />
+{/if}
+

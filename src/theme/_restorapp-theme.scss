@@ -21,8 +21,10 @@ $dark-100: #000000;
 $dark-80: #484848;
 $dark-60: #827F7F;
 
+$main-font: 'Inter', sans-serif;
+
 .inter {
-    font-family: 'Inter', sans-serif;
+    font-family: $main-font;
     &-xl {
         font-size: 48px;
     }

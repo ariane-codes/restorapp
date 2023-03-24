@@ -1,3 +1,23 @@
-* :global(.shaped-outlined) {
-    border-radius: 16px 16px 0 0;
-  }
+@use '@material/textfield/index' as mdc-textfield;
+@use "@material/textfield/icon" as mdc-icon;
+@use "../../theme/restorapp-theme" as restorapp;
+
+
+.textfield-ra {
+    // @include mdc-textfield.fill-color(restorapp.$light-80);
+    &.primary-ra {
+        @include mdc-textfield.outline-color(restorapp.$primary-100);
+        @include mdc-textfield.label-color(restorapp.$primary-100);
+        @include mdc-textfield.caret-color(restorapp.$primary-100);
+        @include mdc-textfield.hover-outline-color(restorapp.$primary-120);
+        @include mdc-icon.leading-icon-color(restorapp.$primary-120);
+    }
+
+    &.secondary-ra {
+        @include mdc-textfield.outline-color(restorapp.$secondary-100);
+        @include mdc-textfield.label-color(restorapp.$secondary-100);
+        @include mdc-textfield.caret-color(restorapp.$secondary-100);
+        @include mdc-textfield.hover-outline-color(restorapp.$secondary-120);
+        @include mdc-icon.leading-icon-color(restorapp.$secondary-120);
+    }
+}

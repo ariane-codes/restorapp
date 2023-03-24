@@ -7,9 +7,9 @@
 </script>
 
 <header class="header-wrapper">
-    <Brand height={50} variant="BrandWithCircle"/>
+    <Brand height={50} variant="BrandWithCircle" redirectsToHome={true}/>
     {#if shouldShowButton}
-        <Button on:click={(e => console.log("HEYA"))} label={"Login"}/>
+        <Button href={"/login"} label={"Login"}/>
     {/if}
     
 </header>

@@ -20,7 +20,7 @@
         return () => unsubscribe();
     })
 
-    const shouldShowButton = data.route !== "/login" && data.route !== "/signup";
+    $: shouldShowButton = data.route !== "/login" && data.route !== "/signup";
 </script>
 
 <svelte:head>

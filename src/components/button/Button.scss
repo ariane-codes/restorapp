@@ -1,14 +1,13 @@
-@use '@material/button/index' as mdc-button;
-@use '@material/button/mixins';
-
+@use '@material/button' as mdc-button;
+@use "@material/button/_button-shared-theme" as mdc-button-outlined;
 @use "../../theme/restorapp-theme" as restorapp;
 @use "@material/theme/color-palette";
-
+@use "@material/theme";
 
 
 .button-rounded {
     @include mdc-button.shape-radius(12px);
-    --mdc-outlined-button-label-text-font: 'Inter', sans-serif;
+    --mdc-outlined-button-label-text-font: restorapp.$main-font;
     --mdc-outlined-button-label-text-transform: none;
     --mdc-outlined-button-label-text-tracking: 0;
 }
