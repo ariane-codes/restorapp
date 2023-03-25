@@ -23,6 +23,18 @@ $dark-60: #827F7F;
 
 $main-font: 'Inter', sans-serif;
 
+a {
+    text-decoration: none;
+    color: $dark-100;
+    font-family: $main-font;
+
+    &.unset-visited {
+        &:visited {
+            color: $dark-100;
+        }
+    }
+}
+
 .inter {
     font-family: $main-font;
     &-xl {

@@ -1,18 +1,26 @@
-@use '@material/button' as mdc-button;
-@use "@material/button/_button-shared-theme" as mdc-button-outlined;
+@use '@material/button/_button-shared-theme' as mdc-button;
 @use "../../theme/restorapp-theme" as restorapp;
-@use "@material/theme/color-palette";
-@use "@material/theme";
 
+$button-theme: (
+    label-text-font: restorapp.$main-font,
+    label-text-transform: none,
+    label-text-tracking: 0
+);
 
 .button-rounded {
     @include mdc-button.shape-radius(12px);
-    --mdc-outlined-button-label-text-font: restorapp.$main-font;
-    --mdc-outlined-button-label-text-transform: none;
-    --mdc-outlined-button-label-text-tracking: 0;
+    @include mdc-button.theme(
+        $theme: $button-theme,
+        $resolver: ()
+    );
 }
 
 .primary {
     @include mdc-button.ink-color(restorapp.$light-100);
     @include mdc-button.container-fill-color(restorapp.$primary-100);
+}
+
+.secondary {
+    @include mdc-button.ink-color(restorapp.$light-100);
+    @include mdc-button.container-fill-color(restorapp.$secondary-100);
 }

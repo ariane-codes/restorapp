@@ -2,7 +2,8 @@
     import {
         Mail,
         Meh,
-        Key
+        Key,
+        User,
     } from 'lucide-svelte';
     
     export let name: string | undefined;
@@ -15,6 +16,7 @@
         "Mail": Mail,
         "Meh": Meh,
         "Key": Key,
+        "User": User,
     };
 
     let icon = icons[name as string];

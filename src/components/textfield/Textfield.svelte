@@ -8,7 +8,7 @@
     export let withLeadingIcon: boolean = false;
     export let withTrailingIcon: boolean = false;
     export let iconName: string | undefined = undefined;
-    export let width: string | undefined = "350px";
+    export let width: string = "350px";
 
     export let value: string = "";
     

@@ -2,6 +2,7 @@
 
     import type { PageData } from './$types';
     import Textfield from '../../components/textfield/Textfield.svelte';
+    import Button from '../../components/button/Button.svelte';
 	import Checkbox from '../../components/checkbox/Checkbox.svelte';
     export let data: PageData;
 
@@ -17,7 +18,7 @@
 </script>
 
 <form class="grow flex flex-col items-center p-5">
-    <h1 class="p-5 my-10 text-4xl">Login</h1>
+    <h1 class="p-5 mt-10 mb-5 text-4xl">Login</h1>
 
     <div class="my-2">
         <Textfield 
@@ -41,8 +42,23 @@
         />
     </div>
 
-    <div class="my-1">
+    <div class="my-1 -ml-3 w-[360px] flex justify-between items-center">
         <Checkbox label="Remember me" checked={rememberMe} color="secondary-ra"/>
+        <a class="text-sm italic" href="/restore-password">Forgot password?</a>
     </div>
+
+    <div class="mt-4">
+        <Button label="Login" color="secondary" width="300px"/>
+    </div>
+
+    <div class="text-sm my-1 mt-4 flex w-[350px]">
+        <a class="unset-visited" href="/signup">
+            <span>
+                Don't have an account?
+                <span class="font-bold">Sign Up.</span>
+            </span>
+        </a>
+        
+    </div>    
     
 </form>
