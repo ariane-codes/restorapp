@@ -23,4 +23,5 @@ $button-theme: (
 .secondary {
     @include mdc-button.ink-color(restorapp.$light-100);
     @include mdc-button.container-fill-color(restorapp.$secondary-100);
+    @include mdc-button.icon-color(restorapp.$light-100);
 }

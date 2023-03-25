@@ -1,33 +1,49 @@
 <script lang="ts">
 
-    import type { PageData } from './$types';
+    import type { ActionData, PageData } from './$types';
     import Textfield from '../../components/textfield/Textfield.svelte';
     import Button from '../../components/button/Button.svelte';
 	import Checkbox from '../../components/checkbox/Checkbox.svelte';
+	import { enhance, type SubmitFunction } from '$app/forms';
+	import { goto } from '$app/navigation';
     export let data: PageData;
+    export let form: ActionData;
 
     let email: string = "";
     let password: string = "";
     let rememberMe: boolean = false;
+    let loading: boolean = false;
 
-    if (data.currentUser) {
-        // Redirect back to home if user is logged in.
-        window.location.href = "/";
+    $: if (data.currentUser) {
+        goto("/");
+    }
+
+    const loginEnhance: SubmitFunction = () => {
+        // Do something before the form submits
+        loading = true;
+
+        return async ({ update }) => {
+            // Do something after the form submits
+            loading = false;
+            await update({ reset: false });
+        }; 
+
     }
 
 </script>
 
-<form class="grow flex flex-col items-center p-5">
+<form method="POST" class="grow flex flex-col items-center p-5" use:enhance={loginEnhance}>
     <h1 class="p-5 mt-10 mb-5 text-4xl">Login</h1>
 
     <div class="my-2">
-        <Textfield 
+        <Textfield
             label="Email"
             withLeadingIcon
             iconName="Mail"
             color="secondary-ra"
             bind:value={email}
             type="email"
+            input$name="email"
         />
     </div>
 
@@ -39,6 +55,7 @@
             color="secondary-ra"
             bind:value={password}
             type="password"
+            input$name="password"
         />
     </div>
 
@@ -47,12 +64,18 @@
         <a class="text-sm italic" href="/restore-password">Forgot password?</a>
     </div>
 
+    {#if form?.errorCode}
+        <span class="text-red-500 text-sm">
+            Wrong credentials.
+        </span>
+    {/if}
+
     <div class="mt-4">
-        <Button label="Login" color="secondary" width="300px"/>
+        <Button label="Login" color="secondary" width="300px" type="submit" {loading}/>
     </div>
 
     <div class="text-sm my-1 mt-4 flex w-[350px]">
-        <a class="unset-visited" href="/signup">
+        <a target="_self" class="unset-visited" href="/signup">
             <span>
                 Don't have an account?
                 <span class="font-bold">Sign Up.</span>

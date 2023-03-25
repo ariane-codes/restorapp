@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { authStore } from "$stores/authStore";
+	import type { User } from "firebase/auth";
     import Brand from "./brand/Brand.svelte";
     import Button from "./button/Button.svelte";
-
     export let shouldShowButton: boolean;
-
+    let currentUser: User | null;
+    
 </script>
 
 <header class="header-wrapper">

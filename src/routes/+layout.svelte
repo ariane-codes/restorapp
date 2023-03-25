@@ -10,16 +10,7 @@
     import { authStore } from "$stores/authStore";
     import { invalidateAll } from "$app/navigation";
     import Header from "../components/Header.svelte";
-
-    onMount(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            invalidateAll();
-            authStore.update((curr) => {
-                return {...curr, isLoading: false, currentUser: user};
-            })
-        });
-        return () => unsubscribe();
-    })
+	import { onAuthStateChanged } from "firebase/auth";
 
     $: shouldShowButton = data.route !== "/login" && data.route !== "/signup";
 </script>

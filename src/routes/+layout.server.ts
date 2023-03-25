@@ -1,9 +1,9 @@
 import type { LayoutServerLoad } from "./$types";
-import { auth } from "$lib/firebase/firebase.client";
 
-export const load: LayoutServerLoad = async ({ route, url, params}) => {
+export const load: LayoutServerLoad = async ({ route, locals }) => {
+    console.log("LAYOUT SERVER LOAD");
     return {
-        currentUser: auth.currentUser,
+        currentUser: locals.currentUser,
         route: route.id
     }
 };
