@@ -1,0 +1,25 @@
+@use "@material/checkbox/_checkbox-theme" as mdc-checkbox;
+@use "../../theme/restorapp-theme" as restorapp;
+
+
+.checkbox-ra {
+    &.primary-ra {
+        @include mdc-checkbox.ink-color(restorapp.$light-80);
+        @include mdc-checkbox.container-colors(
+            $unmarked-stroke-color: restorapp.$primary-100,
+            $marked-stroke-color: restorapp.$primary-100,
+            $marked-fill-color: restorapp.$primary-100,
+        );
+        @include mdc-checkbox.ripple-color(
+            $color: restorapp.$primary-100,
+        );
+        @include mdc-checkbox.focus-indicator-color(restorapp.$primary-100);
+    }
+
+    &.secondary-ra {
+        @include mdc-checkbox.container-colors(
+            $unmarked-stroke-color: restorapp.$secondary-100,
+        );
+    }
+
+}

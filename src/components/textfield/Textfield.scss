@@ -4,7 +4,6 @@
 
 
 .textfield-ra {
-    // @include mdc-textfield.fill-color(restorapp.$light-80);
     &.primary-ra {
         @include mdc-textfield.outline-color(restorapp.$primary-100);
         @include mdc-textfield.label-color(restorapp.$primary-100);

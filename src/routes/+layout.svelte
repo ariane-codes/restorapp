@@ -27,15 +27,10 @@
 <svelte:head>
 	<title>RestorApp</title>
 </svelte:head>
-<main class="mainContainer inter">
+<div class="h-screen flex flex-col inter">
     <Header {shouldShowButton}/>
-    <slot/>
-</main>
-
-<style lang="scss">
-    .mainContainer {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-</style>
+    <main class="grow flex">
+        <slot/>
+    </main>
+    
+</div>

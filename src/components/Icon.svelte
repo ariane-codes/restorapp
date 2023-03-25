@@ -1,7 +1,8 @@
 <script lang="ts">
     import {
         Mail,
-        Meh
+        Meh,
+        Key
     } from 'lucide-svelte';
     
     export let name: string | undefined;
@@ -12,7 +13,8 @@
 
     let icons: IIcons = {
         "Mail": Mail,
-        "Meh": Meh
+        "Meh": Meh,
+        "Key": Key,
     };
 
     let icon = icons[name as string];

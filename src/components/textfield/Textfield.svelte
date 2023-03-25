@@ -8,6 +8,7 @@
     export let withLeadingIcon: boolean = false;
     export let withTrailingIcon: boolean = false;
     export let iconName: string | undefined = undefined;
+    export let width: string | undefined = "350px";
 
     export let value: string = "";
     
@@ -20,6 +21,8 @@
     bind:value={value} 
     {label}
     class="textfield-ra {color}"
+    style="width: {width}"
+    {...$$restProps}
 >
     {#if withLeadingIcon || withTrailingIcon && typeof iconName === "string"}
         <Icon class="mdc-text-field__icon mdc-text-field__icon--leading" name={iconName}/>
