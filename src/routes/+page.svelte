@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { invalidateAll } from "$app/navigation";
-
-
-    import { page } from "$app/stores";
 	import { auth } from "$lib/firebase/firebase.client";
 	import { signOut } from "firebase/auth";
 

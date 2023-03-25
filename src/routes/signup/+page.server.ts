@@ -1,4 +1,4 @@
-import type { Actions } from "./$types";
+import type { Actions, PageServerLoad } from "./$types";
 import { createUserWithEmailAndPassword, type UserCredential, type User, updateProfile, updateCurrentUser } from "firebase/auth";
 import { auth } from "$lib/firebase/firebase.client";
 import { fail, redirect } from "@sveltejs/kit";
@@ -6,6 +6,12 @@ import { FirebaseError } from '@firebase/util'
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "$lib/firebase/firebase.client";
 import { FIREBASE_AUTH_COOKIE } from "$lib/utils/formUtils";
+
+export const load: PageServerLoad = async ({ locals }) => {
+    if (locals.currentUser) {
+        throw redirect(302, "/");
+    }
+};
 
 export const actions: Actions = {
     default: async ({ request, cookies }) => {

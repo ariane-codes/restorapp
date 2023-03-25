@@ -5,6 +5,12 @@ import { fail, redirect } from "@sveltejs/kit";
 import { FirebaseError } from '@firebase/util'
 import { FIREBASE_AUTH_COOKIE } from "$lib/utils/formUtils";
 
+export const load: PageServerLoad = async ({ locals }) => {
+    if (locals.currentUser) {
+        throw redirect(302, "/");
+    }
+};
+
 export const actions: Actions = {
     default: async ({ request, cookies }) => {
         let formData = await request.formData();

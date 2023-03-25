@@ -14,6 +14,7 @@
     let rememberMe: boolean = false;
     let loading: boolean = false;
 
+    $: console.log(data.currentUser);
     $: if (data.currentUser) {
         goto("/");
     }
