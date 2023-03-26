@@ -3,6 +3,7 @@
     import "../app.css";
     import type { PageData } from './$types';
     import Header from "../components/Header.svelte";
+	import Footer from "../components/Footer.svelte";
 
     export let data: PageData;
     $: shouldShowButton = data.route !== "/login" && data.route !== "/signup";
@@ -18,5 +19,5 @@
     <main class="grow flex">
         <slot/>
     </main>
-    
+    <Footer/>
 </div>

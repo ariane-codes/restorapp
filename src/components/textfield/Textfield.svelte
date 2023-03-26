@@ -20,6 +20,7 @@
     variant="outlined" 
     bind:value={value} 
     {label}
+    placeholder="HEYA"
     class="textfield-ra {color}"
     style="width: {width}"
     {...$$restProps}
