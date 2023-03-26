@@ -21,7 +21,7 @@
     }
 
     const handleBlur = () => {
-        if (hideLabelOnFocus) {
+        if (hideLabelOnFocus && value === "") {
             innerLabel = label;
         }
     }

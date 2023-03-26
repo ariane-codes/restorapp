@@ -17,8 +17,8 @@
 
 </script>
 
-<div class="flex flex-col w-full items-center">
-    <div class="relative bg-origin-border bg-center bg-no-repeat bg-cover flex w-full justify-center min-h-[250px] h-2/5 before:opacity-40 items-center bg-blend-multiply bg-primary-80/40 " 
+<div class="flex flex-col w-full items-center h-full">
+    <div class="px-3 relative bg-origin-border bg-center bg-no-repeat bg-cover flex w-full justify-center min-h-[250px] h-2/5 before:opacity-40 items-center bg-blend-multiply bg-primary-80/40 " 
     style="background-image: url({restaurantImageSrc});"
     >
         <div class="absolute inset-0 w-full h-full bg-white bg-opacity-40"/>
@@ -32,11 +32,11 @@
         
     </div>
 
-    <section class="min-h-[35rem] grow max-w-7xl w-full flex flex-col">
+    <section class="h-full grow max-w-7xl w-full flex flex-col">
         <h1 class="px-10 my-10 text-secondary-100 text-3xl font-semibold">
             Explore restaurants near you...
         </h1>
-        <div class="px-10 grow">
+        <div class="px-10 grow ">
             <div class="grid gap-14 md:grid-cols-2 h-full">
 
                 <a href="/">
