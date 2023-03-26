@@ -1,13 +1,9 @@
 <script lang="ts">
-	import type { User } from "firebase/auth";
     import Menu from "@smui/menu";
     import { Anchor, Corner } from '@smui/menu-surface';
     import List, {
     Item,
-    Separator,
     Text,
-    PrimaryText,
-    SecondaryText,
     } from '@smui/list';
 
     import Brand from "./brand/Brand.svelte";

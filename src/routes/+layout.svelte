@@ -6,7 +6,7 @@
 	import Footer from "../components/Footer.svelte";
 
     export let data: PageData;
-    $: shouldShowButton = data.route !== "/login" && data.route !== "/signup";
+    $: isLoginOrSignUp = data.route === "/login" || data.route === "/signup";
 
 
 </script>
@@ -15,9 +15,13 @@
 	<title>RestorApp</title>
 </svelte:head>
 <div class="h-screen flex flex-col inter">
-    <Header currentUser={data.currentUser} {shouldShowButton}/>
+    <Header currentUser={data.currentUser} shouldShowButton={!isLoginOrSignUp}/>
     <main class="grow flex">
         <slot/>
     </main>
-    <Footer/>
+
+    {#if !isLoginOrSignUp}
+        <Footer/>
+    {/if}
+
 </div>

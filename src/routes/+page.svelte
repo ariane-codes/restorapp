@@ -22,12 +22,14 @@
     style="background-image: url({restaurantImageSrc});"
     >
         <div class="absolute inset-0 w-full h-full bg-white bg-opacity-40"/>
-        <div class=" p-2 flex bg-white blur-sm h-[65px] absolute w-[358px]"/>  
         <Textfield
             withLeadingIcon
             iconName="Search"
             label="Search for restaurants..."
+            hideLabelOnFocus
+            width="25rem"
         />
+        
     </div>
 
     <section class="min-h-[35rem] grow max-w-7xl w-full flex flex-col">
