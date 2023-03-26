@@ -1,5 +1,5 @@
 import type { Actions, PageServerLoad } from "./$types";
-import { signInWithEmailAndPassword, updateCurrentUser, type UserCredential } from "firebase/auth";
+import { signInWithEmailAndPassword, type UserCredential } from "firebase/auth";
 import { auth } from "$lib/firebase/firebase.client";
 import { fail, redirect } from "@sveltejs/kit";
 import { FirebaseError } from '@firebase/util'
