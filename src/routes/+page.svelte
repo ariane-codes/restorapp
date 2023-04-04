@@ -2,7 +2,7 @@
 	import { invalidateAll } from "$app/navigation";
 	import { auth } from "$lib/firebase/firebase.client";
 	import { signOut } from "firebase/auth";
-	import Textfield from "../components/textfield/Textfield.svelte";
+	import Textfield from "$lib/components/textfield/Textfield.svelte";
 
     import type { PageData } from "./$types";;
 

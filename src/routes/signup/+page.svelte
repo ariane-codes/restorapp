@@ -2,9 +2,9 @@
 
     import type { ActionData, PageData } from './$types';
     import { enhance, type SubmitFunction } from '$app/forms';
-    import Textfield from '../../components/textfield/Textfield.svelte';
-    import Button from '../../components/button/Button.svelte';
-	import Checkbox from '../../components/checkbox/Checkbox.svelte';
+    import Textfield from '$lib/components/textfield/Textfield.svelte';
+    import Button from '$lib/components/button/Button.svelte';
+	import Checkbox from '$lib/components/checkbox/Checkbox.svelte';
 	import { goto } from '$app/navigation';
     export let data: PageData;
     export let form: ActionData;

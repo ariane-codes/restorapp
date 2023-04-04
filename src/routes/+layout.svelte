@@ -2,8 +2,8 @@
     import "$theme/_restorapp-theme.scss";
     import "../app.css";
     import type { PageData } from './$types';
-    import Header from "../components/Header.svelte";
-	import Footer from "../components/Footer.svelte";
+    import Header from "$lib/components/Header.svelte";
+	import Footer from "$lib/components/Footer.svelte";
 
     export let data: PageData;
     $: isLoginOrSignUp = data.route === "/login" || data.route === "/signup";

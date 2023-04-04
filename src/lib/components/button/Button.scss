@@ -1,5 +1,5 @@
 @use '@material/button/_button-shared-theme' as mdc-button;
-@use "../../theme/restorapp-theme" as restorapp;
+@use "../../../theme/restorapp-theme" as restorapp;
 
 $button-theme: (
     label-text-font: restorapp.$main-font,
