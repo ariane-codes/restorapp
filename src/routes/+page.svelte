@@ -39,7 +39,7 @@
         <div class="px-10 grow ">
             <div class="grid gap-14 md:grid-cols-2 h-full">
 
-                <a href="/">
+                <a href="/restaurants?category=mexican">
                     <div class="bg-black/30 bg-blend-multiply rounded-3xl h-full min-h-[10rem]
                     flex justify-center items-center
                     bg-origin-border bg-center bg-no-repeat bg-cover"
@@ -50,7 +50,7 @@
                     </div> 
                 </a>
 
-                <a href="/">
+                <a href="/restaurants?category=desserts">
                     <div class="bg-black/30 bg-blend-multiply rounded-3xl h-full min-h-[10rem]
                     flex justify-center items-center
                     bg-origin-border bg-center bg-no-repeat bg-cover"
@@ -61,7 +61,7 @@
                     </div> 
                 </a>
 
-                <a href="/">
+                <a href="/restaurants?category=american">
                     <div class="bg-black/30 bg-blend-multiply rounded-3xl h-full min-h-[10rem]
                     flex justify-center items-center
                     bg-origin-border bg-center bg-no-repeat bg-cover"
@@ -72,7 +72,7 @@
                     </div> 
                 </a>
 
-                <a href="/">
+                <a href="/restaurants?category=japanese">
                     <div class="bg-black/30 bg-blend-multiply rounded-3xl h-full min-h-[10rem]
                     flex justify-center items-center
                     bg-origin-border bg-center bg-no-repeat bg-cover"
