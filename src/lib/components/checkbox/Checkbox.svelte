@@ -4,11 +4,17 @@
     import "./Checkbox.scss";
     export let checked: boolean = false;
     export let color: "primary-ra" | "secondary-ra" = "primary-ra";
-    export let label: string = "";
+    export let label: string | undefined = "";
 </script>
 
 
 <FormField>
     <Checkbox {checked} class="checkbox-ra {color}"/>
-    <span slot="label" class="inter">{label}</span>
+    <span slot="label" class="inter">
+        {#if $$slots.default}
+            <slot/>
+        {:else}
+            {label}
+        {/if}
+    </span>
 </FormField>

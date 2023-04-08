@@ -1,10 +1,12 @@
 <script lang="ts">
     import Accordion, { Panel, Header, Content } from "@smui-extra/accordion";
     import IconButton, { Icon } from "@smui/icon-button";
-    import { ChefHat, ChevronDown, ChevronUp, Tag } from "lucide-svelte";
+    import { ChefHat, ChevronDown, ChevronUp, Tag, Banknote, ThumbsUp, Star } from "lucide-svelte";
     import type { IFiltersState } from "./IFiltersState";
 	import MapListButton from "./MapListButton.svelte";
 	import Checkbox from "../checkbox/Checkbox.svelte";
+	import Button from "../button/Button.svelte";
+    import { default as SmuiButton, Group, Label } from "@smui/button";
 
     export const filtersState: IFiltersState = {
         layout: "list"
@@ -12,6 +14,10 @@
 
     let categoriesOpen = true;
     let tagsOpen = true;
+    let priceOpen = true;
+    let ratingOpen = true;
+
+    const starClasses = "text-accent-100 fill-accent-100"
 
 </script>
 
@@ -57,26 +63,74 @@
                 
             </Content>
         </Panel>
-        <Panel variant="unelevated" bind:open={tagsOpen}>
+
+        <Panel variant="unelevated" bind:open={priceOpen}>
             <Header>
                 <div class="flex items-center inter text-secondary-100 tracking-normal">
-                    <Tag class="mr-3"/>
-                    <strong>Tags</strong>
+                    <Banknote class="mr-3"/>
+                    <strong>Price</strong>
                 </div>
                 
-                <IconButton class="text-secondary-100" toggle slot="icon" pressed={tagsOpen}>
+                <IconButton class="text-secondary-100" toggle slot="icon" pressed={priceOpen}>
                     <Icon class="material-icons" on><ChevronDown/></Icon>
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
             <Content class="flex flex-col">
-                <Checkbox label="American" color="secondary-ra" />
-                <Checkbox label="American" color="secondary-ra"/>
+                <Group>
+                    <Button color="secondary" label="€" variant="unelevated"/>
+                    <Button color="secondary" label="€€" variant="unelevated"/>
+                    <Button color="secondary pressed" label="€€€" variant="unelevated"/>
+                    <Button color="secondary" label="€€€€" variant="unelevated"/>
+                    <Button color="secondary" label="€€€€€" variant="unelevated"/>
+                </Group>
                 
+            </Content>
+        </Panel>
+
+        <Panel variant="unelevated" bind:open={ratingOpen}>
+            <Header>
+                <div class="flex items-center inter text-secondary-100 tracking-normal">
+                    <ThumbsUp class="mr-3"/>
+                    <strong>Rating</strong>
+                </div>
+                
+                <IconButton class="text-secondary-100" toggle slot="icon" pressed={ratingOpen}>
+                    <Icon class="material-icons" on><ChevronDown/></Icon>
+                    <Icon class="material-icons"><ChevronUp/></Icon>
+                </IconButton>
+            </Header>
+            <Content class="flex flex-col">
+                <Checkbox color="secondary-ra">
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                </Checkbox>
+                <Checkbox color="secondary-ra">
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                </Checkbox>
+                <Checkbox color="secondary-ra">
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                </Checkbox>
+                <Checkbox color="secondary-ra">
+                    <Star class={starClasses}/>
+                    <Star class={starClasses}/>
+                </Checkbox>
+                <Checkbox color="secondary-ra">
+                    <Star class={starClasses}/>
+                </Checkbox>
             </Content>
         </Panel>
     </Accordion>
 
+    <Button width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
 
 </div>
 

@@ -10,7 +10,7 @@
 
 class={`map-list-button 
 ${currentLayout == "list" ? "map-img" : "list-img"} relative bg-origin-border 
-bg-center bg-no-repeat bg-cover w-full border-none rounded-lg`}
+bg-center bg-no-repeat bg-cover w-full border-none rounded-2xl`}
 aria-label={ariaLabel}
 title={ariaLabel}
 >
@@ -37,6 +37,7 @@ title={ariaLabel}
         left: 0;
         right: 0;
         bottom: 0;
+        border-radius: 1rem;
         opacity: 0.6;
         background-repeat: no-repeat;
         background-size: cover;

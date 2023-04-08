@@ -25,3 +25,27 @@ $button-theme: (
     @include mdc-button.container-fill-color(restorapp.$secondary-100);
     @include mdc-button.icon-color(restorapp.$light-100);
 }
+
+.smui-button__group {
+    .primary {
+        @include mdc-button.ink-color(restorapp.$primary-100);
+        @include mdc-button.container-fill-color(restorapp.$light-100);
+
+        &.pressed {
+            @include mdc-button.ink-color(restorapp.$light-100);
+            @include mdc-button.container-fill-color(restorapp.$primary-100);
+        }
+    }
+    
+    .secondary {
+        @include mdc-button.ink-color(restorapp.$secondary-100);
+        @include mdc-button.container-fill-color(restorapp.$light-100);
+        @include mdc-button.icon-color(restorapp.$light-100);
+
+        &.pressed {
+            @include mdc-button.ink-color(restorapp.$light-100);
+            @include mdc-button.container-fill-color(restorapp.$secondary-100);
+            @include mdc-button.icon-color(restorapp.$light-100);
+        }
+    }
+}

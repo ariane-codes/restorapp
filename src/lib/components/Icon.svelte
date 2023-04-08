@@ -5,7 +5,8 @@
         Key,
         User,
         Loader2,
-        Search
+        Search,
+        Plus
     } from 'lucide-svelte';
     
     export let name: string | undefined;
@@ -20,7 +21,8 @@
         "Key": Key,
         "User": User,
         "Loader": Loader2,
-        "Search": Search
+        "Search": Search,
+        "Plus": Plus
     };
 
     let icon = icons[name as string];
