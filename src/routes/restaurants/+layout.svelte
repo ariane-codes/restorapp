@@ -1,12 +1,13 @@
 <script lang="ts">
-    import type { LayoutData } from './$types';
-	import FiltersSidebar from './FiltersSidebar.svelte';
+    import MediaQuery from "svelte-media-queries";
+    import FiltersSidebar from './FiltersSidebar.svelte';
     
-    export let data: LayoutData;
 </script>
 
+<MediaQuery query="(max-width:480px)" let:matches>
+    {#if !matches}
+        <FiltersSidebar />
+    {/if}
+</MediaQuery>
 
-<FiltersSidebar />
-<slot>
-
-</slot>
+<slot/>

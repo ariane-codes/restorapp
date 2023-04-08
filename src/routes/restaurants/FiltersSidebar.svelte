@@ -4,4 +4,6 @@
 
 </script>
 
-<Filters/>
+<aside>
+	<Filters/>
+</aside>

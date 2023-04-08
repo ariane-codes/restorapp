@@ -21,9 +21,9 @@
 
 </script>
 
-<div class="flex flex-col px-5 py-5 items-center w-full"> 
+<div class="flex flex-col px-5 py-5 items-center w-full h-full"> 
     
-    <MapListButton currentLayout={filtersState.layout}/>
+    <MapListButton/>
 
     <Accordion multiple class="my-6 w-full">
         <Panel variant="unelevated" bind:open={categoriesOpen}>
@@ -130,7 +130,8 @@
         </Panel>
     </Accordion>
 
-    <Button width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
-
+    <div class="mt-auto">
+        <Button width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
+    </div>
 </div>
 
