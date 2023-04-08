@@ -1,18 +1,30 @@
 <script lang="ts">
     import { Map, LayoutList } from "lucide-svelte";
-    export let currentLayout: "list" | "map" = "list";
+    import { page } from "$app/stores";
+    import { goto } from "$app/navigation";
+    
+    type RestaurantPageLayoutType = "list" | "map";
 
-    const ariaLabel = currentLayout === "list" ? "Switch to map" : "Switch to list";
+    $: currentLayout = $page.url.searchParams.get("layout") as RestaurantPageLayoutType;
+    $: currentSearchParams = $page.url.searchParams;
+    $: ariaLabel = currentLayout === "list" ? "Switch to map" : "Switch to list";
+
+    $: switchLayout = () => {
+        const newSearchParams: URLSearchParams = currentSearchParams;
+        newSearchParams.set("layout", currentLayout === "list" ? "map" : "list");
+        goto(`/restaurants?${newSearchParams.toString()}`);
+        currentLayout = currentLayout === "list" ? "map" : "list";
+    }
 
 </script>
 
-<button 
-
+<button
 class={`map-list-button 
 ${currentLayout == "list" ? "map-img" : "list-img"} relative bg-origin-border 
 bg-center bg-no-repeat bg-cover w-full border-none rounded-2xl`}
 aria-label={ariaLabel}
 title={ariaLabel}
+on:click={switchLayout}
 >
     
     <div class="relative h-16 w-full flex justify-center items-center inter font-bold text-primary-120 inter-s gap-2 ">
