@@ -4,6 +4,6 @@
 
 </script>
 
-<aside>
+<aside class="w-[430px]">
 	<Filters/>
 </aside>

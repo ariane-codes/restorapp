@@ -11,4 +11,5 @@ export interface Restaurant {
     categories?: string[];
     rating?: number;
     tags?: string[];
+    reviewCount?: number;
 }
