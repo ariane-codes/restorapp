@@ -1,27 +1,52 @@
 <script lang="ts">
     import Accordion, { Panel, Header, Content } from "@smui-extra/accordion";
+    import FormField from '@smui/form-field';
     import IconButton, { Icon } from "@smui/icon-button";
     import { ChefHat, ChevronDown, ChevronUp, Tag, Banknote, ThumbsUp, Star } from "lucide-svelte";
     import type { IFiltersState } from "./IFiltersState";
 	import MapListButton from "./MapListButton.svelte";
 	import Checkbox from "../checkbox/Checkbox.svelte";
 	import Button from "../button/Button.svelte";
-    import { default as SmuiButton, Group, Label } from "@smui/button";
+    import { Group } from "@smui/button";
+	import { Categories, Tags } from "$lib/models";
+	import { onMount } from "svelte";
+    import { page } from "$app/stores";
+    import { paramsToObject } from "$lib/utils/apiUtils";
+	import { goto } from "$app/navigation";
+	import { browser } from "$app/environment";
 
-    export const filtersState: IFiltersState = {
-        layout: "list"
-    };
+
+    $: filtersState = {
+        checkedCategories: [],
+        checkedTags: [],
+        checkedPrice: [],
+        checkedRating: []
+    } as IFiltersState;
+
+
+    let searchParams = $page.url.searchParams;
+    let searchParamsObj = paramsToObject(searchParams);
+
+    $: ["categories", "tags", "price", "rating"].forEach(key => {
+        if (key in searchParamsObj) {
+            let filterKey = `checked${key.charAt(0).toUpperCase()}${key.slice(1)}`
+            filtersState[filterKey as keyof IFiltersState] = searchParamsObj[key];
+        }
+    })
+
+
 
     let categoriesOpen = true;
-    let tagsOpen = true;
+    let tagsOpen = false;
     let priceOpen = true;
     let ratingOpen = true;
 
     const starClasses = "text-accent-100 fill-accent-100"
 
+
 </script>
 
-<div class="flex flex-col px-5 py-5 items-center w-full h-full"> 
+<div class="flex flex-col px-5 items-center w-full h-full"> 
     
     <MapListButton/>
 
@@ -38,10 +63,11 @@
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
-            <Content class="flex flex-col">
-                <Checkbox label="American" color="secondary-ra" />
-                <Checkbox label="American" color="secondary-ra"/>
-                
+            <Content class="flex flex-col"  style={"padding-top: 0; padding-bottom: 0"}>
+                {#each Object.keys(Categories) as category}
+                    <Checkbox group={filtersState.checkedCategories}
+                    label={Categories[category]} color="secondary-ra" value={category}/>
+                {/each}
             </Content>
         </Panel>
 
@@ -57,9 +83,14 @@
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
-            <Content class="flex flex-col">
-                <Checkbox label="American" color="secondary-ra" />
-                <Checkbox label="American" color="secondary-ra"/>
+            <Content class="flex flex-col" style={"padding-top: 0; padding-bottom: 0"}>
+                {#each Object.keys(Tags) as tag}
+                    <FormField>
+                        <Checkbox group={filtersState.checkedTags}
+                        label={Tags[tag]} color="secondary-ra" value={tag}/>
+
+                    </FormField>
+                {/each}
                 
             </Content>
         </Panel>
@@ -76,9 +107,9 @@
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
-            <Content class="flex flex-col p-0">
+            <Content class="flex flex-col items-center" style={"padding-right: 0; padding-left: 0"}>
                 <Group orientation="vertical" >
-                    <Button color="secondary" label="€" variant="outlined"/>
+                    <Button color="secondary" label="€" variant="unelevated"/>
                     <Button color="secondary" label="€€" variant="unelevated"/>
                     <Button color="secondary pressed" label="€€€" variant="unelevated"/>
                     <Button color="secondary" label="€€€€" variant="unelevated"/>
@@ -100,38 +131,23 @@
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
-            <Content class="flex flex-col">
-                <Checkbox color="secondary-ra">
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                </Checkbox>
-                <Checkbox color="secondary-ra">
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                </Checkbox>
-                <Checkbox color="secondary-ra">
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                </Checkbox>
-                <Checkbox color="secondary-ra">
-                    <Star class={starClasses}/>
-                    <Star class={starClasses}/>
-                </Checkbox>
-                <Checkbox color="secondary-ra">
-                    <Star class={starClasses}/>
-                </Checkbox>
+            <Content class="flex flex-col"  style={"padding-top: 0; padding-bottom: 0"}>
+                {#each Array(5) as _sc, i}
+                <FormField>
+                    <Checkbox color="secondary-ra" group={filtersState.checkedRating} value={(i - 5)*-1}>
+                        {#each Array(((i - 5)*-1)) as _}
+                            <Star class={starClasses}/>
+                        {/each}
+                    </Checkbox>
+
+                </FormField>
+                {/each}
             </Content>
         </Panel>
     </Accordion>
 
     <div class="mt-auto">
-        <Button width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
+        <Button
+        width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
     </div>
 </div>
-

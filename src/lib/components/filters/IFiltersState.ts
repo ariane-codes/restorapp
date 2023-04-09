@@ -1,4 +1,6 @@
 export interface IFiltersState {
-    layout: "map" | "list";
-
+    checkedCategories: string [];
+    checkedTags: string [];
+    checkedPrice: number[];
+    checkedRating: number[];
 }

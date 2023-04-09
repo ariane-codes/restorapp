@@ -5,11 +5,12 @@
     export let checked: boolean = false;
     export let color: "primary-ra" | "secondary-ra" = "primary-ra";
     export let label: string | undefined = "";
+    export let group: any[] | undefined = undefined;
 </script>
 
 
 <FormField>
-    <Checkbox {checked} class="checkbox-ra {color}"/>
+    <Checkbox {checked} class="checkbox-ra {color}" bind:group={group} {...$$restProps}/>
     <span slot="label" class="inter">
         {#if $$slots.default}
             <slot/>
