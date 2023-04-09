@@ -76,9 +76,9 @@
                     <Icon class="material-icons"><ChevronUp/></Icon>
                 </IconButton>
             </Header>
-            <Content class="flex flex-col">
-                <Group>
-                    <Button color="secondary" label="€" variant="unelevated"/>
+            <Content class="flex flex-col p-0">
+                <Group orientation="vertical" >
+                    <Button color="secondary" label="€" variant="outlined"/>
                     <Button color="secondary" label="€€" variant="unelevated"/>
                     <Button color="secondary pressed" label="€€€" variant="unelevated"/>
                     <Button color="secondary" label="€€€€" variant="unelevated"/>

@@ -4,6 +4,6 @@
 
 </script>
 
-<aside class="w-[430px]">
+<aside class="max-w-[430px] w-full">
 	<Filters/>
 </aside>
