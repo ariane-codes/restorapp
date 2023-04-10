@@ -14,6 +14,15 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
+        env:
+          VITE_APIKEY: ${{ secrets.VITE_APIKEY }}
+          VITE_APPID: ${{ secrets.VITE_APPID }}
+          VITE_AUTHDOMAIN: ${{ secrets.VITE_AUTHDOMAIN }}
+          VITE_FIREBASE_ADMIN_SECRET: ${{ secrets.VITE_FIREBASE_ADMIN_SECRET }}
+          VITE_MESSAGINGSENDERID: ${{ secrets.VITE_MESSAGINGSENDERID }}
+          VITE_PRIVATE_KEY: ${{ secrets.VITE_PRIVATE_KEY }}
+          VITE_PROJECTID: ${{ secrets.VITE_PROJECTID }}
+          VITE_STORAGEBUCKET: ${{ secrets.VITE_STORAGEBUCKET }}
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
