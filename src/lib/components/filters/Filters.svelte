@@ -3,47 +3,52 @@
     import FormField from '@smui/form-field';
     import IconButton, { Icon } from "@smui/icon-button";
     import { ChefHat, ChevronDown, ChevronUp, Tag, Banknote, ThumbsUp, Star } from "lucide-svelte";
-    import type { IFiltersState } from "./IFiltersState";
 	import MapListButton from "./MapListButton.svelte";
 	import Checkbox from "../checkbox/Checkbox.svelte";
 	import Button from "../button/Button.svelte";
     import { Group } from "@smui/button";
 	import { Categories, Tags } from "$lib/models";
-	import { onMount } from "svelte";
     import { page } from "$app/stores";
     import { paramsToObject } from "$lib/utils/apiUtils";
-	import { goto } from "$app/navigation";
-	import { browser } from "$app/environment";
-
-
-    $: filtersState = {
-        checkedCategories: [],
-        checkedTags: [],
-        checkedPrice: [],
-        checkedRating: []
-    } as IFiltersState;
-
-
-    let searchParams = $page.url.searchParams;
-    let searchParamsObj = paramsToObject(searchParams);
-
-    $: ["categories", "tags", "price", "rating"].forEach(key => {
-        if (key in searchParamsObj) {
-            let filterKey = `checked${key.charAt(0).toUpperCase()}${key.slice(1)}`
-            filtersState[filterKey as keyof IFiltersState] = searchParamsObj[key];
-        }
-    })
-
-
+	import { filtersStore, type IFiltersStore } from "$lib/stores/filtersStore";
+	import { onMount } from "svelte";
 
     let categoriesOpen = true;
     let tagsOpen = false;
     let priceOpen = true;
     let ratingOpen = true;
+    const starClasses = "text-accent-100 fill-accent-100";
 
-    const starClasses = "text-accent-100 fill-accent-100"
+    const handlePrice = (price: number) => {
+        filtersStore.update((currentFilters: IFiltersStore) => {
+            let newFilters = {...currentFilters};
+            if (newFilters.checkedPrice.includes(price)) {
+                newFilters.checkedPrice = newFilters.checkedPrice.filter(p => p !== price);
+            } else {
+                newFilters.checkedPrice.push(price);
+            }
+            return newFilters;
+        });
+    }
 
+    $: priceColor = [1, 2, 3, 4, 5].map((price) =>
+        $filtersStore.checkedPrice.includes(price) ? "secondary pressed" : "secondary"
+    );
 
+    onMount(() => {
+        let searchParamsObj = paramsToObject($page.url.searchParams);
+        console.log(searchParamsObj);
+        filtersStore.update((currentFilters: IFiltersStore) => {
+            let newFilters = {...currentFilters};
+            ["categories", "tags", "price", "rating"].forEach(key => {
+                if (key in searchParamsObj) {
+                    let filterKey = `checked${key.charAt(0).toUpperCase()}${key.slice(1)}`
+                    newFilters[filterKey as keyof IFiltersStore] = searchParamsObj[key];
+                }
+            })
+            return newFilters;
+        });
+    });
 </script>
 
 <div class="flex flex-col px-5 items-center w-full h-full"> 
@@ -70,7 +75,7 @@
             </Header>
             <Content class="flex flex-col"  style={"padding-top: 0; padding-bottom: 0"}>
                 {#each Object.keys(Categories) as category}
-                    <Checkbox group={filtersState.checkedCategories}
+                    <Checkbox bind:group={$filtersStore.checkedCategories} checked={$filtersStore.checkedCategories.includes(category)}
                     label={Categories[category]} color="secondary-ra" value={category}/>
                 {/each}
             </Content>
@@ -91,7 +96,7 @@
             <Content class="flex flex-col" style={"padding-top: 0; padding-bottom: 0"}>
                 {#each Object.keys(Tags) as tag}
                     <FormField>
-                        <Checkbox group={filtersState.checkedTags}
+                        <Checkbox bind:group={$filtersStore.checkedTags} checked={$filtersStore.checkedTags.includes(tag)}
                         label={Tags[tag]} color="secondary-ra" value={tag}/>
 
                     </FormField>
@@ -114,11 +119,16 @@
             </Header>
             <Content class="flex flex-col items-center" style={"padding-right: 0; padding-left: 0"}>
                 <Group orientation="vertical" >
-                    <Button color="secondary" label="€" variant="unelevated"/>
-                    <Button color="secondary" label="€€" variant="unelevated"/>
-                    <Button color="secondary pressed" label="€€€" variant="unelevated"/>
-                    <Button color="secondary" label="€€€€" variant="unelevated"/>
-                    <Button color="secondary" label="€€€€€" variant="unelevated"/>
+                    <Button bind:color={priceColor[0]}
+                    label="€" variant="unelevated" on:click={() => handlePrice(1)}/>
+                    <Button bind:color={priceColor[1]}
+                    label="€€" variant="unelevated" on:click={() => handlePrice(2)}/>
+                    <Button bind:color={priceColor[2]}
+                    label="€€€" variant="unelevated" on:click={() => handlePrice(3)}/>
+                    <Button bind:color={priceColor[3]}
+                    label="€€€€" variant="unelevated" on:click={() => handlePrice(4)}/>
+                    <Button bind:color={priceColor[4]}
+                    label="€€€€€" variant="unelevated" on:click={() => handlePrice(5)}/>
                 </Group>
                 
             </Content>
@@ -139,7 +149,9 @@
             <Content class="flex flex-col"  style={"padding-top: 0; padding-bottom: 0"}>
                 {#each Array(5) as _sc, i}
                 <FormField>
-                    <Checkbox color="secondary-ra" group={filtersState.checkedRating} value={(i - 5)*-1}>
+                    <Checkbox color="secondary-ra" bind:group={$filtersStore.checkedRating}
+                    checked={$filtersStore.checkedRating.includes((i - 5)*-1)}
+                    value={(i - 5)*-1}>
                         {#each Array(((i - 5)*-1)) as _}
                             <Star class={starClasses}/>
                         {/each}

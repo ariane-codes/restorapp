@@ -1,7 +1,7 @@
 <script lang="ts">
     import MediaQuery from "svelte-media-queries";
     import FiltersSidebar from './FiltersSidebar.svelte';
-    
+
 </script>
 
 <div class="flex w-full justify-center">

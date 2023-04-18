@@ -2,7 +2,7 @@
 <Button
     on:click
     variant={variant}
-    class="button-rounded relative  {color}"
+    class={innerClass}
     style="width: {width}"
     {...$$restProps}
 >
@@ -37,4 +37,8 @@
     export let withTrailingIcon: boolean = false;
     export let iconName: string | undefined = undefined;
     export let variant: 'text' | 'raised' | 'unelevated' | 'outlined' = "outlined";
+    export let classes: string | undefined = undefined;
+
+    $: innerClass = `button-rounded relative ${color} ${classes}`;
+
 </script>
