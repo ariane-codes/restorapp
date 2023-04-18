@@ -16,7 +16,7 @@
 </svelte:head>
 <div class="h-screen flex flex-col inter">
     <Header currentUser={data.currentUser} shouldShowButton={!isLoginOrSignUp}/>
-    <main class="grow flex overflow-y-hidden">
+    <main class="grow flex -">
         <slot/>
     </main>
 

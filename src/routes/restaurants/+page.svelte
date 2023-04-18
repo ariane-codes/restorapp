@@ -25,7 +25,7 @@
     
         </div>
 
-        <div class="overflow-auto w-full h-full gap-3">
+        <div class="w-full h-full gap-3">
             {#each restaurants as restaurant}
                 {#each Array(10) as _ }
                     

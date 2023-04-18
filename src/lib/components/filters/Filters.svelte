@@ -50,6 +50,11 @@
     
     <MapListButton/>
 
+    <div class="mt-5">
+        <Button
+        width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
+    </div>
+
     <Accordion multiple class="my-6 w-full">
         <Panel variant="unelevated" bind:open={categoriesOpen}>
             <Header>
@@ -146,8 +151,5 @@
         </Panel>
     </Accordion>
 
-    <div class="mt-auto">
-        <Button
-        width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
-    </div>
+    
 </div>
