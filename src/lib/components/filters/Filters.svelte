@@ -13,11 +13,11 @@
 	import { filtersStore, type IFiltersStore } from "$lib/stores/filtersStore";
 	import { onMount } from "svelte";
 
-    let categoriesOpen = true;
-    let tagsOpen = false;
-    let priceOpen = true;
-    let ratingOpen = true;
-    const starClasses = "text-accent-100 fill-accent-100";
+    let categoriesOpen: boolean = true;
+    let tagsOpen: boolean = false;
+    let priceOpen: boolean = true;
+    let ratingOpen: boolean = true;
+    const starClasses: string = "text-accent-100 fill-accent-100";
 
     const handlePrice = (price: number) => {
         filtersStore.update((currentFilters: IFiltersStore) => {

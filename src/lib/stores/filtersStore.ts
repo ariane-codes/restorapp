@@ -13,5 +13,3 @@ export const filtersStore = writable<IFiltersStore>({
     checkedPrice: [],
     checkedRating: [],
 });
-
-export const categoriesStore = writable<string[]>([]);
