@@ -36,7 +36,6 @@ export const actions: Actions = {
 
         } catch (error) {
             if (error instanceof FirebaseError) {
-                console.log(error.code);
                 return fail(503, {
                     errorCode: "auth"
                 })

@@ -37,7 +37,6 @@
 
     onMount(() => {
         let searchParamsObj = paramsToObject($page.url.searchParams);
-        console.log(searchParamsObj);
         filtersStore.update((currentFilters: IFiltersStore) => {
             let newFilters = {...currentFilters, mounted: true};
             ["categories", "tags", "price", "rating"].forEach(key => {

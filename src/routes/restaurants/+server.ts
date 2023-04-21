@@ -1,14 +1,13 @@
 import { json, type RequestHandler } from '@sveltejs/kit'
 import { paramsToObject } from "$lib/utils/apiUtils";
 import { db } from "$lib/firebase/firebase.client";
-import { getDocs, collection, query, where, QueryConstraint, Query } from "firebase/firestore";
-import type { Restaurant } from '$lib/models';
+import { getDocs, collection, query, where, Query } from "firebase/firestore";
 
 export const GET: RequestHandler = async ({ url }) => {
     
     const searchParams: URLSearchParams = url.searchParams;
     const paramsObj = paramsToObject(searchParams);
-    
+
     const restaurantsRef = collection(db, "restaurants");
     let q: Query;
 

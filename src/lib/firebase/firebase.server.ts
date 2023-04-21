@@ -5,7 +5,6 @@ import type { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 const initializeFirebase = () => {
 	if (!admin.apps.length) {
 		const serviceAccount = JSON.parse(VITE_FIREBASE_ADMIN_SECRET);
-        // console.log(serviceAccount);
 		admin.initializeApp({
 			credential: admin.credential.cert({
                 projectId: serviceAccount.project_id,
