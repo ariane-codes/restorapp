@@ -5,6 +5,7 @@ export interface IFiltersStore {
     checkedTags: string [];
     checkedPrice: number[];
     checkedRating: number[];
+    mounted: boolean;
 }
 
 export const filtersStore = writable<IFiltersStore>({
@@ -12,4 +13,5 @@ export const filtersStore = writable<IFiltersStore>({
     checkedTags: [],
     checkedPrice: [],
     checkedRating: [],
+    mounted: false
 });

@@ -1,26 +1,45 @@
 import { json, type RequestHandler } from '@sveltejs/kit'
 import { paramsToObject } from "$lib/utils/apiUtils";
 import { db } from "$lib/firebase/firebase.client";
-import { getDocs, collection, query, where, QueryConstraint } from "firebase/firestore";
+import { getDocs, collection, query, where, QueryConstraint, Query } from "firebase/firestore";
+import type { Restaurant } from '$lib/models';
 
 export const GET: RequestHandler = async ({ url }) => {
     
     const searchParams: URLSearchParams = url.searchParams;
     const paramsObj = paramsToObject(searchParams);
+    
+    const restaurantsRef = collection(db, "restaurants");
+    let q: Query;
 
-    const queryFilters: QueryConstraint[] = [];
+    // Filter by categories in the database
+    // Firebase only allows one array-contains-any operation per query
+    if ("categories" in paramsObj) {
+        q = query(restaurantsRef, where("categories", "array-contains-any", paramsObj["categories"]));
+    } else {
+        q = query(restaurantsRef);
+    }
 
-    ["categories", "tags", "price", "rating"].forEach(key => {
+    const qSnapshot = await getDocs(q);
+    let restaurants = qSnapshot.docs.map(doc => doc.data());
+
+    // Rest of filters are done in the server once data is retrieved
+
+    // Filter by tags, they're an array
+    if ("tags" in paramsObj) {
+        restaurants = restaurants.filter(restaurant => restaurant.tags.some((t: any) => paramsObj.tags.includes(t)));
+    }
+
+    // These other filters are a number
+    const restOfFilters: string[] = ["price", "rating"];
+
+    restOfFilters.forEach((key: string) => {
         if (key in paramsObj) {
-            queryFilters.push(where(key, "array-contains-any", paramsObj[key]))
+            restaurants = restaurants.filter( (restaurant) => (
+                paramsObj[key].map((numberAsString: string) => parseInt(numberAsString)).includes(Math.floor(restaurant[key]))
+            ));
         }
     })
 
-    const restaurantsRef = collection(db, "restaurants");
-    const q = query(restaurantsRef, ...queryFilters);
-    const qSnapshot = await getDocs(q);
-    const restaurants = qSnapshot.docs.map(doc => doc.data());
-
-    return json(restaurants)
-
+    return json(restaurants);
 };

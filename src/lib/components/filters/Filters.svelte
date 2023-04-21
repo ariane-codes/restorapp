@@ -39,7 +39,7 @@
         let searchParamsObj = paramsToObject($page.url.searchParams);
         console.log(searchParamsObj);
         filtersStore.update((currentFilters: IFiltersStore) => {
-            let newFilters = {...currentFilters};
+            let newFilters = {...currentFilters, mounted: true};
             ["categories", "tags", "price", "rating"].forEach(key => {
                 if (key in searchParamsObj) {
                     let filterKey = `checked${key.charAt(0).toUpperCase()}${key.slice(1)}`

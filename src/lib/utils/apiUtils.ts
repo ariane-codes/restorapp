@@ -5,7 +5,11 @@ export const paramsToObject = (searchParams: URLSearchParams): any => {
         if (key === "layout") {
             result[key] = value;
         } else {
-            result[key] = value.split(",");
+            if (["price", "rating"].includes(key)) {                
+                result[key] = value.split(",").map((numberAsString: string) => parseInt(numberAsString));
+            } else {
+                result[key] = value.split(",");
+            }
         }
     }
     return result;

@@ -18,8 +18,6 @@ export const load = (async ({ url, fetch }) => {
     const restaurantResponse = await fetch(`/restaurants?${searchParams.toString()}`)
     const restaurants: Restaurant[] = await restaurantResponse.json();
 
-    console.log(restaurants)
-
     return {
         layout,
         restaurants

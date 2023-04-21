@@ -1,3 +1,5 @@
+import type { DocumentData } from "firebase/firestore";
+
 export interface Restaurant {
     id: string;
     name: string;
@@ -12,4 +14,8 @@ export interface Restaurant {
     rating?: number;
     tags?: string[];
     reviewCount?: number;
+}
+
+export interface RestaurantDoc extends DocumentData, Restaurant {
+
 }
