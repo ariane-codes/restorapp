@@ -1,6 +1,6 @@
 import type { Restaurant } from '$lib/models';
 import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 
 
@@ -22,4 +22,4 @@ export const load = (async ({ url, fetch }) => {
         layout,
         restaurants
     };
-}) satisfies LayoutServerLoad;
+}) satisfies PageServerLoad;

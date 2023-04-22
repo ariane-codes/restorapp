@@ -3,7 +3,7 @@ import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, fetch }) => {
 
-    const restaurantResponse = await fetch(`/${params.slug}`)
+    const restaurantResponse = await fetch(`/restaurants/${params.slug}`)
 
     const restaurant: Restaurant = await restaurantResponse.json();
 
