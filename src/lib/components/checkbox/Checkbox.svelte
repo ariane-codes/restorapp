@@ -10,7 +10,12 @@
 
 
 <FormField>
+    {#if group}
     <Checkbox {checked} class="checkbox-ra {color}" bind:group={group} {...$$restProps}/>
+    {:else}
+    <Checkbox {checked} class="checkbox-ra {color}" {...$$restProps}/>
+    {/if}
+    
     <span slot="label" class="inter">
         {#if $$slots.default}
             <slot/>

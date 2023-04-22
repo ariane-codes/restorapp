@@ -12,7 +12,7 @@
     export let shouldShowButton: boolean;
     export let currentUser: {uid: string; email: string; name: string} | null;
 
-    $: userFirstName = currentUser?.name.split(" ")[0] ?? "";
+    $: userFirstName = currentUser?.name?.split(" ")[0] ?? "";
 
     let menu: Menu;
     let anchor: HTMLDivElement;

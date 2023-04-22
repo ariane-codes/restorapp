@@ -1,4 +1,4 @@
-import type { DocumentData } from "firebase/firestore";
+import type { GeoPoint } from "firebase/firestore";
 
 export interface Restaurant {
     id: string;
@@ -6,16 +6,11 @@ export interface Restaurant {
     address?: string;
     city?: string;
     phone?: string;
-    lat?: number;
-    lng?: number;
+    geopoint?: GeoPoint;
     price?: number;
     imageUrl?: string;
     categories?: string[];
     rating?: number;
     tags?: string[];
     reviewCount?: number;
-}
-
-export interface RestaurantDoc extends DocumentData, Restaurant {
-
 }

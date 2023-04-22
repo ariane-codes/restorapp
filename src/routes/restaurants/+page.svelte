@@ -53,44 +53,33 @@
 
 </script>
 
-<div class="flex w-full justify-center">
-    <div class=" w-full max-w-[1400px] flex">
-        <MediaQuery query="(max-width:480px)" let:matches>
-            {#if !matches}
-                <FiltersSidebar />
-            {/if}
-        </MediaQuery>
-        {#if restaurants.length === 0}
-            <div class="flex flex-col justify-center items-center grow">
-                <Empty/>
-                No restaurants found.
-            </div>
-            
-        {:else}
-            <div class="flex flex-col items-center w-full px-4">
-                <div class="flex w-full justify-between my-2 mb-3">
-                    
-                <span class="font-bold text-lg">{`${restaurants.length} restaurant${restaurants.length === 1 ? "" : "s"} found`}</span>
-                <!-- <div>Sort here</div> -->
-            
-                </div>
 
-                <div class="w-full h-full gap-3">
-                    {#each restaurants as restaurant}
-                        {#each Array(10) as _ }
-                            
-                        <RestaurantCard {restaurant} />
-                        {/each}
-                    {/each}
-
-                </div>
-            </div>
-        {/if}
-
+<MediaQuery query="(max-width:480px)" let:matches>
+    {#if !matches}
+        <FiltersSidebar />
+    {/if}
+</MediaQuery>
+{#if restaurants.length === 0}
+    <div class="flex flex-col justify-center items-center grow">
+        <Empty/>
+        No restaurants found.
     </div>
-</div>
+    
+{:else}
+    <div class="flex flex-col items-center w-full px-4">
+        <div class="flex w-full justify-between my-2 mb-3">
+            
+        <span class="font-bold text-lg">{`${restaurants.length} restaurant${restaurants.length === 1 ? "" : "s"} found`}</span>
+        <!-- <div>Sort here</div> -->
+    
+        </div>
 
+        <div class="w-full h-full gap-3">
+            {#each restaurants as restaurant}
+                <RestaurantCard {restaurant} />
+            {/each}
 
-
-
+        </div>
+    </div>
+{/if}
 
