@@ -2,6 +2,7 @@
     import type { PageData } from './$types';
     import { ChefHat, Star } from "lucide-svelte";
 	import ReviewCard from './ReviewCard.svelte';
+	import StarRating from '$lib/components/StarRating.svelte';
 
     export let data: PageData;
 
@@ -23,19 +24,7 @@
             <div class="grid grid-cols-3">
                 <h1 class="text-primary-100 col-span-2 text-5xl">{restaurant.name}</h1>
                 <div class="flex items-center justify-start py-3 px-2 ">
-                    {#if restaurant.rating}
-                        {#each Array(Math.round(restaurant.rating)) as _}
-                            <Star class="text-accent-100 fill-accent-100"/>
-                        {/each}
-                        {#each Array(5 - Math.round(restaurant.rating)) as _}
-                            <Star class="text-accent-100 text-xs"/>
-                        {/each}
-                        <span class="text-lg ml-3 font-bold">{restaurant.rating}</span>
-                    {:else}
-                        {#each Array(5) as _}
-                            <Star class="text-gray-200 fill-gray-200" />
-                        {/each}                    
-                    {/if}
+                    <StarRating rating={restaurant.rating} showNumber />
                 </div>
             </div>
 
