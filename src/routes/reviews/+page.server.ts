@@ -1,6 +1,6 @@
 import { db } from '$lib/firebase/firebase.client';
 import { redirect, fail } from '@sveltejs/kit';
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore";
 import type { Actions } from './$types';
 
 
@@ -35,6 +35,19 @@ export const actions: Actions = {
                 }
             })
 
+            const restaurantRef = doc(db, "restaurants", restaurantId);
+            const restaurantDoc = await getDoc(restaurantRef);
+            const restaurant = restaurantDoc.data()
+            const currentReviewCount = restaurant?.reviewCount;
+            const currentRestaurantRating = restaurant?.rating;
+
+            const { newRestaurantRating, newReviewCount } = calculateNewRestaurantRating(currentRestaurantRating, currentReviewCount, reviewRating);
+
+            await updateDoc(restaurantRef, {
+                reviewCount: newReviewCount,
+                rating: newRestaurantRating,
+            })
+
             return { success: true }
         } catch (error) {
             console.log(error);
@@ -43,3 +56,9 @@ export const actions: Actions = {
         
     }
 };
+
+const calculateNewRestaurantRating = (currentRating: number, currentReviewCount: number, newRating: number) => {
+    const newReviewCount = currentReviewCount + 1;
+    const newRestaurantRating = (currentRating * currentReviewCount + newRating) / newReviewCount;
+    return { newRestaurantRating, newReviewCount };
+}
