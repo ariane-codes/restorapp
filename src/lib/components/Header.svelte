@@ -5,11 +5,13 @@
     Item,
     Text,
     } from '@smui/list';
-
+    import Textfield from "./textfield/Textfield.svelte";
     import Brand from "./brand/Brand.svelte";
     import Button from "./button/Button.svelte";
 	import { logout } from "$lib/utils/authUtils";
+	import { enhance } from "$app/forms";
     export let shouldShowButton: boolean;
+    export let shouldShowSearchBar: boolean;
     export let currentUser: {uid: string; email: string; name: string} | null;
 
     $: userFirstName = currentUser?.name?.split(" ")[0] ?? "";
@@ -24,6 +26,20 @@
 
 <header class="header-wrapper">
     <Brand height={50} variant="BrandWithCircle" redirectsToHome={true}/>
+
+    {#if shouldShowSearchBar}
+        <form method="POST" use:enhance action="/" >
+            <Textfield
+                withLeadingIcon
+                iconName="Search"
+                label="Search for restaurants..."
+                hideLabelOnFocus
+                width="45rem"
+                input$name="search"
+            />
+        </form>
+    {/if}
+
     {#if shouldShowButton}
         {#if currentUser}
             <div

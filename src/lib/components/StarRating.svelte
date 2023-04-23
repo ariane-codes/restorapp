@@ -15,7 +15,7 @@
         <Star class={`${emptyStars ? "text-accent-100" : "text-light-120 fill-light-120" } w-${size} h-${size} `}/>
     {/each}
     {#if showNumber}
-    <span class="text-lg ml-3 font-bold">{rating}</span>
+    <span class="text-lg ml-3 font-bold">{rating.toFixed(2)}</span>
     {/if}
     {:else}
         {#each Array(5) as _}

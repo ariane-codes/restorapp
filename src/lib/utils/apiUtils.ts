@@ -2,7 +2,7 @@ export const paramsToObject = (searchParams: URLSearchParams): any => {
 
     const result: any = {};
     for (const [key, value] of searchParams.entries()) {
-        if (key === "layout") {
+        if (key === "layout" || key === "search") {
             result[key] = value;
         } else {
             if (["price", "rating"].includes(key)) {                

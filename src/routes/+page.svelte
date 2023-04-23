@@ -5,6 +5,7 @@
 	import Textfield from "$lib/components/textfield/Textfield.svelte";
 
     import type { PageData } from "./$types";;
+	import { enhance } from "$app/forms";
 
     export let data: PageData;
 
@@ -22,13 +23,16 @@
     style="background-image: url({restaurantImageSrc});"
     >
         <div class="absolute inset-0 w-full h-full bg-white bg-opacity-40"/>
-        <Textfield
-            withLeadingIcon
-            iconName="Search"
-            label="Search for restaurants..."
-            hideLabelOnFocus
-            width="25rem"
-        />
+        <form method="POST" use:enhance >
+            <Textfield
+                withLeadingIcon
+                iconName="Search"
+                label="Search for restaurants..."
+                hideLabelOnFocus
+                width="25rem"
+                input$name="search"
+            />
+        </form>
         
     </div>
 

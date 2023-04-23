@@ -7,7 +7,7 @@
 
     export let data: PageData;
     $: isLoginOrSignUp = data.route === "/login" || data.route === "/signup";
-
+    $: shouldShowSearchBar = data.route === "/restaurants";
 
 </script>
 
@@ -15,7 +15,9 @@
 	<title>RestorApp</title>
 </svelte:head>
 <div class="h-screen flex flex-col inter">
-    <Header currentUser={data.currentUser} shouldShowButton={!isLoginOrSignUp}/>
+    <Header currentUser={data.currentUser} shouldShowButton={!isLoginOrSignUp}
+    {shouldShowSearchBar}
+    />
     <main class="grow flex -">
         <slot/>
     </main>

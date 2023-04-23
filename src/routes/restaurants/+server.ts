@@ -24,6 +24,10 @@ export const GET: RequestHandler = async ({ url }) => {
 
     // Rest of filters are done in the server once data is retrieved
 
+    if ("search" in paramsObj) {
+        restaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(paramsObj.search.toLowerCase()));
+    }
+
     // Filter by tags, they're an array
     if ("tags" in paramsObj) {
         restaurants = restaurants.filter(restaurant => restaurant.tags.some((t: any) => paramsObj.tags.includes(t)));
