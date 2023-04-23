@@ -15,7 +15,6 @@
 
     const submitReviewEnhance: SubmitFunction = () => {
         return async ({ update, result }) => {
-            console.log("Result", result)
             if (result.status === 401) {
                 // User isn't logged in, redirect to login
                 // This shouldn't be necessary but just in case.

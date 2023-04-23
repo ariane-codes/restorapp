@@ -12,9 +12,7 @@ export const load = (async ({ params, fetch }) => {
         const reviewsResponse = await fetch(`/reviews?restaurantId=${params.slug}`);
         reviews = await reviewsResponse.json();
     }
-
-    console.log("Reviews", reviews)
-
+    
     return {
         restaurant,
         reviews
