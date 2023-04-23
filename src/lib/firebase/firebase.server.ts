@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import { VITE_FIREBASE_ADMIN_SECRET, VITE_PRIVATE_KEY } from '$env/static/private';
+import { VITE_FIREBASE_ADMIN_SECRET } from '$env/static/private';
 import type { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
 
 const initializeFirebase = () => {

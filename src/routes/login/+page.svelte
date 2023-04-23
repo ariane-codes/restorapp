@@ -6,6 +6,7 @@
 	import Checkbox from '$lib/components/checkbox/Checkbox.svelte';
 	import { enhance, type SubmitFunction } from '$app/forms';
 	import { goto } from '$app/navigation';
+    import { page } from "$app/stores";
     export let data: PageData;
     export let form: ActionData;
 
@@ -17,6 +18,8 @@
     $: if (data.currentUser) {
         goto("/");
     }
+
+    $: currentSearchParams = $page.url.searchParams;
 
     const loginEnhance: SubmitFunction = () => {
         // Do something before the form submits
@@ -33,6 +36,8 @@
 
 <form method="POST" class="grow flex flex-col items-center p-5" use:enhance={loginEnhance}>
     <h1 class="p-5 mt-10 mb-5 text-4xl">Login</h1>
+
+    <input type="hidden" hidden name="returnTo" value={currentSearchParams.get("returnTo")} />
 
     <div class="my-2">
         <Textfield

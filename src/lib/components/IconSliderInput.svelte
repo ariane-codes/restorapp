@@ -4,6 +4,7 @@
     export let color: string = "accent";
     export let score: number | undefined = undefined;
     export let size: string = "2";
+    export let name: string | undefined = undefined;
 </script>
 
 <div class="relative flex flex-col w-fit">
@@ -22,7 +23,7 @@
         {/each}
     
     </div>
-    <input type="range" class="absolute inset-0 grow opacity-0 cursor-pointer" step="1" bind:value={score} on:change
+    <input {name} type="range" class="absolute inset-0 grow opacity-0 cursor-pointer" step="1" bind:value={score} on:change
     min={0} max={5}
     />
 </div>

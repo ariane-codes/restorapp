@@ -32,14 +32,19 @@ export const actions: Actions = {
                 }
             );
 
-            throw redirect(303, "/");
-
         } catch (error) {
             if (error instanceof FirebaseError) {
                 return fail(503, {
                     errorCode: "auth"
                 })
             }
+        }
+
+        if (formData.get("returnTo") !== null) {
+            console.log("Here")
+            throw redirect(301, formData.get("returnTo") as string);
+        } else {
+            throw redirect(303, "/");
         }
         
     }

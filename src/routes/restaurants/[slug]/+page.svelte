@@ -9,6 +9,7 @@
     import { ChevronDown, ChevronUp } from 'lucide-svelte';
 	import Button from "$lib/components/button/Button.svelte";
     import AddReviewDialog from './AddReviewDialog.svelte';
+	import { goto } from '$app/navigation';
 
     export let data: PageData;
 
@@ -17,7 +18,12 @@
     let isReviewDialogOpen: boolean = false;
     
     const openAddReviewDialog = () => {
-        isReviewDialogOpen = true;
+        if (!data.currentUser) {
+            // Don't open review form if user isn't logged in.
+            goto(`/login?returnTo=/restaurants/${restaurant.id}`);
+        } else {
+            isReviewDialogOpen = true;
+        }
     };
 
 </script>
