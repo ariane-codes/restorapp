@@ -12,6 +12,7 @@
     import { paramsToObject } from "$lib/utils/apiUtils";
 	import { filtersStore, type IFiltersStore } from "$lib/stores/filtersStore";
 	import { onMount } from "svelte";
+	import { goto } from "$app/navigation";
 
     let categoriesOpen: boolean = true;
     let tagsOpen: boolean = false;
@@ -55,7 +56,7 @@
     <MapListButton/>
 
     <div class="mt-5">
-        <Button
+        <Button on:click={() => goto("/restaurants/new")}
         width={"100%"} label="Add Restaurant" withLeadingIcon iconName="Plus" color="secondary"/>
     </div>
 

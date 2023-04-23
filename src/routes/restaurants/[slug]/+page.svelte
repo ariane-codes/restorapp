@@ -76,7 +76,13 @@
                 {/if}
 
     
-                <div class="mt-10 text-2xl">{`${restaurant.reviewCount} people have shared what they think`}</div>
+                <div class="mt-10 text-2xl">
+                    {`${
+                        restaurant.reviewCount 
+                        ? `${restaurant.reviewCount} people have` 
+                        : "No one has"
+                        } shared what they think.`}
+                </div>
                 
                 {#if reviews.length === 0}
                     <div>

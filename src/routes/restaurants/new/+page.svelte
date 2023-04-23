@@ -111,7 +111,7 @@ class="flex flex-col items-center w-full mt-10" use:enhance>
         </Autocomplete>
         <input hidden type="hidden" name="locationDescription" value={addressValue?.description}/>
         <input hidden type="hidden" name="lat" value={addressValue?.location?.lat()}/>
-        <input hidden type="hidden" name="lat" value={addressValue?.location?.lng()}/>
+        <input hidden type="hidden" name="lng" value={addressValue?.location?.lng()}/>
     </div>
 
     <Accordion multiple class="my-6 w-[400px]">

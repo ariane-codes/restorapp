@@ -1,7 +1,8 @@
 import { db, storage } from '$lib/firebase/firebase.client';
 import type { Restaurant } from '$lib/models';
 import { redirect, type Actions } from '@sveltejs/kit';
-import { ref, uploadBytes } from 'firebase/storage';
+import { setDoc, doc, GeoPoint } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import type { PageServerLoad } from './$types';
 
 export const actions: Actions = {
@@ -15,18 +16,33 @@ export const actions: Actions = {
         const categories = (formData.get("categories") as string).split(",");
         const tags = (formData.get("tags") as string).split(",");
         const price = parseInt(formData.get("price") as string);
-        const picture = formData.get("picture") as Blob;
-        console.log(picture)
+        const picture = formData.get("picture") as File;
 
         const newRestaurantId = crypto.randomUUID();
 
         // Upload image first;
-        
-        const storageRef = ref(storage, `restaurants/${newRestaurantId}.${picture.type.split("/")[1]}`);
-        
-        const snapshot = await uploadBytes(storageRef, picture);
-        console.log(snapshot.metadata);
+        let picArrayBuffer = await picture.arrayBuffer()
+        const storageRef = ref(storage, `restaurantImages/${newRestaurantId}.${picture.type.split("/")[1]}`);
+        const snapshot = await uploadBytes(storageRef, picArrayBuffer, {
+            contentType: picture.type
+        });
+        let imageUrl = await getDownloadURL(snapshot.ref);
 
+        // Then create the restaurant doc
+        await setDoc(doc(db, "restaurants", newRestaurantId), {
+            id: newRestaurantId,
+            categories,
+            geopoint: new GeoPoint(lat, lng),
+            imageUrl,
+            locationDescription,
+            name: restaurantName,
+            price,
+            tags,
+            rating: null,
+            reviewCount: null
+        });
+        
+        throw redirect(303, `/restaurants/${newRestaurantId}`)
     }
 }
 
