@@ -13,7 +13,7 @@
 
     export let data: PageData;
 
-    const { restaurant, reviews } = data;
+    $: ({ restaurant, reviews } = data);
 
     let isReviewDialogOpen: boolean = false;
     
@@ -29,9 +29,9 @@
 </script>
 
 <div class="flex w-full h-full flex-col px-5">
-
-    <AddReviewDialog bind:isOpen={isReviewDialogOpen}/>
-    <div class=" overflow-clip w-full h-1/2
+    
+    <AddReviewDialog bind:isOpen={isReviewDialogOpen} {restaurant}/>
+    <div class=" overflow-clip w-full  min-h-[400px]
         bg-origin-border bg-center bg-no-repeat bg-cover"
         style={`background-image: url(${restaurant.imageUrl});`}/>
 

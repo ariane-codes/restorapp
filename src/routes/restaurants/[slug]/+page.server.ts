@@ -9,10 +9,12 @@ export const load = (async ({ params, fetch }) => {
     let reviews: Review[] = [];
 
     if (restaurant.reviewCount && restaurant.reviewCount > 0) {
+        console.log("Fe4tching reviews")
         const reviewsResponse = await fetch(`/reviews?restaurantId=${params.slug}`);
         reviews = await reviewsResponse.json();
+        console.log("Fetched : ", reviews.length)
     }
-    
+
     return {
         restaurant,
         reviews

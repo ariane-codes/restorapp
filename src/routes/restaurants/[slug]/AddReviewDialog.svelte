@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { enhance, type SubmitFunction } from "$app/forms";
-	import { goto } from "$app/navigation";
-	import { page } from "$app/stores";
+	import { goto, invalidate, invalidateAll } from "$app/navigation";
+    import type { Restaurant } from "$lib/models";
     import IconSliderInput from "$lib/components/IconSliderInput.svelte";
 	import Button from "$lib/components/button/Button.svelte";
 	import Textfield from "$lib/components/textfield/Textfield.svelte";
     import Dialog, { Header, Content, Actions} from "@smui/dialog";
 	import IconButton from "@smui/icon-button";
     export let isOpen: boolean = false;
+    export let restaurant: Restaurant;
 
     let title: string = "";
     let body: string = "";
@@ -19,6 +20,10 @@
                 // User isn't logged in, redirect to login
                 // This shouldn't be necessary but just in case.
                 goto("/login");
+            }
+            if (result.type === 'success') {
+                // Re-run load function to fetch the newly added review
+                await invalidateAll();
             }
             await update({ reset: false });
         };
@@ -41,6 +46,7 @@ aria-describedby="fullscreen-content"
 
     <Content id="fullscreen-content">
         <div class="flex flex-col gap-6 items-left w-full my-4 ">
+            <input hidden type="hidden" name="restaurantId" value={restaurant?.id} />
             <IconSliderInput name="rating" bind:score={rating} />
             <Textfield label="Title" width="100%" color="secondary-ra" bind:value={title} input$name="title"/>
             <Textfield textarea label="Review" width="100%" color="secondary-ra" input$rows={6} bind:value={body} input$name="body"/>
