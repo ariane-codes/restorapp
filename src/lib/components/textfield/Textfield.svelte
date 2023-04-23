@@ -40,6 +40,7 @@
     {...$$restProps}
     on:focus={handleFocus}
     on:blur={handleBlur}
+    autocomplete="off"
 >
     {#if withLeadingIcon || withTrailingIcon && typeof iconName === "string"}
         <Icon class="mdc-text-field__icon mdc-text-field__icon--leading" name={iconName}/>

@@ -15,6 +15,7 @@
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
 		"@smui-extra/accordion": "^7.0.0-beta.3",
+		"@smui-extra/autocomplete": "^7.0.0-beta.3",
 		"@smui/button": "^7.0.0-beta.0",
 		"@smui/checkbox": "^7.0.0-beta.0",
 		"@smui/chips": "^7.0.0-beta.3",
@@ -24,9 +25,11 @@
 		"@smui/icon-button": "^7.0.0-beta.3",
 		"@smui/layout-grid": "^7.0.0-beta.0",
 		"@smui/menu": "^7.0.0-beta.0",
+		"@smui/select": "^7.0.0-beta.3",
 		"@smui/textfield": "^7.0.0-beta.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/google.maps": "^3.52.6",
 		"autoprefixer": "^10.4.14",
 		"postcss": "^8.4.21",
 		"smui-theme": "^7.0.0-beta.0",
@@ -39,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.15.1",
 		"firebase": "^9.17.2",
 		"firebase-admin": "^11.5.0",
 		"lucide-svelte": "^0.127.0",
