@@ -3,15 +3,19 @@
     import { ChefHat, Banknote, Tag } from "lucide-svelte";
     import Chip, { Set, Text } from '@smui/chips';
 	import Button from "$lib/components/button/Button.svelte";
+    import AddReviewDialog from "./AddReviewDialog.svelte";
 
     export let restaurant: Restaurant;
     export let showLeaveReviewButton: boolean = false;
+    export let openAddReviewDialog: () => void ;
 </script>
 
 <div class="flex flex-col w-full px-14">
+    <AddReviewDialog />
     {#if showLeaveReviewButton}
     <div class="my-3 mb-10 w-full">
-        <Button label="Leave a review" color="primary" width="100%" title="Leave a review"/>
+        <Button label="Leave a review" color="primary" width="100%" title="Leave a review"
+        on:click={openAddReviewDialog}/>
     </div>
     {/if}
 

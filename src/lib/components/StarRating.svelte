@@ -4,8 +4,6 @@
     export let showNumber: boolean = false;
     export let emptyStars: boolean = false;
     export let size: string = "12";
-
-    $: console.log(size);
 </script>
 
 <div class="flex">

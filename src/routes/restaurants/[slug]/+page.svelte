@@ -8,15 +8,23 @@
     import IconButton, { Icon } from "@smui/icon-button";
     import { ChevronDown, ChevronUp } from 'lucide-svelte';
 	import Button from "$lib/components/button/Button.svelte";
+    import AddReviewDialog from './AddReviewDialog.svelte';
 
     export let data: PageData;
 
     const { restaurant, reviews } = data;
 
+    let isReviewDialogOpen: boolean = false;
+    
+    const openAddReviewDialog = () => {
+        isReviewDialogOpen = true;
+    };
+
 </script>
 
 <div class="flex w-full h-full flex-col px-5">
 
+    <AddReviewDialog bind:isOpen={isReviewDialogOpen}/>
     <div class=" overflow-clip w-full h-1/2
         bg-origin-border bg-center bg-no-repeat bg-cover"
         style={`background-image: url(${restaurant.imageUrl});`}/>
@@ -51,12 +59,13 @@
                             </IconButton>
                         </Header>
                         <Content>
-                            <RestaurantDetails {restaurant}/>
+                            <RestaurantDetails {restaurant} {openAddReviewDialog}/>
                         </Content>
                     </Panel>
                 </Accordion>
                 <div class="my-3 mb-10 w-full">
-                    <Button label="Leave a review" color="primary" width="100%" title="Leave a review"/>
+                    <Button label="Leave a review" color="primary" width="100%" title="Leave a review"
+                    on:click={openAddReviewDialog}/>
                 </div>
                 {/if}
 
@@ -79,7 +88,7 @@
             <!-- Restaurant info + leave review button -->
             {#if matches}
                 <div class="w-2/5">
-                    <RestaurantDetails {restaurant} showLeaveReviewButton/>
+                    <RestaurantDetails {restaurant} showLeaveReviewButton {openAddReviewDialog}/>
                 </div>
             {/if}
 
