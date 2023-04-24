@@ -31,6 +31,7 @@
                 hideLabelOnFocus
                 width="25rem"
                 input$name="search"
+                input$data-test-id="searchRestaurants"
             />
         </form>
         
